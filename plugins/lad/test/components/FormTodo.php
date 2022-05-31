@@ -43,6 +43,12 @@ class FormTodo extends ComponentBase
 		if ($validator->fails()) {
 			throw new ValidationException($validator);
 		}else{
+			$mail = 'admin@gmail.com';
+
+			\Mail::send('test.contact::contact', $data, function ($message) use ($mail) {
+				$message->to($mail);
+			});
+
 			$form = new Form();
 			$form->name = $name;
 			$form->phone = $phone;
